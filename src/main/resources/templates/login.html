@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="color: red;">Login</h2>
+<form action="#" th:action="@{/loginPage}"  method="post">
+    <input type="text" name="j_email" /> <br />
+    <input type="password"  name="j_password" /> <br />
+    <input type="submit" value="Login" />
+</form>
+<h2 style="color: red;">Register</h2>
+<form action="#" th:action="@{/register}" th:object="${addUser}" method="post" enctype="multipart/form-data">
+    <input type="text" th:field="*{name}"><br/>
+    <input type="text" th:field="*{surname}"><br/>
+    <input type="email" th:field="*{email}"><br/>
+    <input type="password" th:field="*{password}"><br/>
+    <input type="file" name="pic"><br/>
+    <input type="submit" value="add">
+</form>
+</body>
+</html>

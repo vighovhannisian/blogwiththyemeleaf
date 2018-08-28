@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+<ul th:each="articles : ${articleByIds}">
+    <img width="100" th:src="@{'/articlePicture?'(img=${articles.image})}">
+    <li th:text="${articles.title}"></li>
+</ul>
+
+<h2 style="color: red;">Comments</h2>
+<ul th:each="comments : ${commentsByArticle}">
+<li th:text="${comments.text}"></li>
+<li th:text="${comments.fromEmail}"></li>
+<li id="toLi" th:text="${comments.toEmail}"></li>
+<li th:text="${comments.timestamp}"></li>
+    </ul>
+
+<h2 style="color: red;">Add Comment</h2>
+<form action="#" th:action="@{/addComment}" th:object="${newComment}" method="get">
+    <input type="hidden" th:value="${articleId.id}" name="idArticle">
+    <input type="text" th:value="*{text}" name="text" required="required">
+    <input type="email" th:value="*{toEmail}" name="toEmail" required="required" id="toinput">
+    <input type="submit" value="ok">
+</form>
+
+<script>
+    $(document).ready(function(){
+        $("#toLi").click(function(){
+            var liValue = $("#toLi").html();
+            $("#toinput").attr("value", liValue);
+        });
+        });
+    </script>
+</body>
+</html>

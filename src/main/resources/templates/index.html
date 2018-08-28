@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="color: red;">Categories</h2>
+<li th:each="category : ${allCategories}" th:value="${category.id}">
+    <a th:href="@{articleById(id=${category.id})}" th:text="${category.name}"></a>
+</li>
+<h2 style="color: red;">Top Articles</h2>
+<ul th:each="articles : ${topArticles}">
+    <img width="100" th:src="@{'/articlePicture?'(img=${articles.image})}">
+    <a th:href="@{articleByArticleId(id=${articles.id})}" th:text="${articles.title}"></a>
+</ul>
+<h2 style="color: red;">Search</h2>
+<form action="#" th:action="@{/searchResult}" method="get">
+    <input type="text" name="search" placeholder="search">
+    <input type="submit" value="Search">
+</form>
+</body>
+</html>
